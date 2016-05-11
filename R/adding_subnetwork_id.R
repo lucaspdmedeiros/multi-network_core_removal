@@ -1,0 +1,45 @@
+#-----------------------------------------------------------------------------------------------------#
+
+# Description: 
+#   Adds a columns to the data frames core_animals and core_plants and that containg a subnetwork 
+#   identifier.
+#
+# Returns:
+#   Saves 2 csv tables, core_animals_sub and core_plants_sub.
+
+mat = as.matrix(read.table("data/complete_network.txt")) # reading interaction matrix
+
+core_plants = read.csv("data/core_plants.csv") # reading data on plant sp
+names(core_plants) = c("sp", "general_core", "pollination_core", "ant_core", "dispersal_core")
+rownames(mat) == core_plants$sp # checking if sp are in the same order
+head(core_plants)
+core_animals = read.csv("data/core_animals.csv") # reading data on animal sp
+names(core_animals) = c("sp", "general_core", "pollination_core", "ant_core", "dispersal_core")
+colnames(mat) == core_animals$sp # checking if sp are in the same order
+head(core_animals)
+# subnetwork animal sp richness: pollination = 173, ants = 30, dispersal = 46
+core_animals$subnetwork = c(rep(1, 173), rep(2, 30), rep(3, 46)) # adding column with animals sp subnetwork id
+head(core_animals)
+
+# adding column with plant sp subnetwork id
+# pollination
+sub_mat_pol = mat[ , 1:173]
+plant_not_sub_pol = as.numeric(which(apply(sub_mat_pol, 1, sum) == 0))
+core_plants$pol_subnetwork = rep(1, 141)
+core_plants[plant_not_sub_pol, "pol_subnetwork"] = 0
+# ants
+sub_mat_ant = mat[ , 174:203]
+plant_not_sub_ant = as.numeric(which(apply(sub_mat_ant, 1, sum) == 0))
+core_plants$ant_subnetwork = rep(1, 141)
+core_plants[plant_not_sub_ant, "ant_subnetwork"] = 0
+# dispersal
+sub_mat_disp = mat[ , 204:ncol(mat)]
+plant_not_sub_disp = as.numeric(which(apply(sub_mat_disp, 1, sum) == 0))
+core_plants$disp_subnetwork = rep(1, 141)
+core_plants[plant_not_sub_disp, "disp_subnetwork"] = 0
+
+# saving the new tables
+write.csv(core_animals, "output/core_animals_sub.csv")
+write.csv(core_plants, "output/core_plants_sub.csv")
+
+#-----------------------------------------------------------------------------------------------------#
