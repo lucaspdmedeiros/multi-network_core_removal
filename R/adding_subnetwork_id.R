@@ -18,8 +18,12 @@ names(core_animals) = c("sp", "general_core", "pollination_core", "ant_core", "d
 colnames(mat) == core_animals$sp # checking if sp are in the same order
 head(core_animals)
 # subnetwork animal sp richness: pollination = 173, ants = 30, dispersal = 46
-core_animals$subnetwork = c(rep(1, 173), rep(2, 30), rep(3, 46)) # adding column with animals sp subnetwork id
-head(core_animals)
+n_pol = 173
+n_ants = 30
+n_disp = 46
+core_animals$pol_subnetwork = c(rep(1, n_pol), rep(0, nrow(core_animals) - n_pol))
+core_animals$ant_subnetwork = c(rep(0, n_pol), rep(1, n_ants), rep(0, nrow(core_animals) - (n_pol + n_ants)))
+core_animals$disp_subnetwork = c(rep(0, n_pol + n_ants), rep(1, n_disp))
 
 # adding column with plant sp subnetwork id
 # pollination
