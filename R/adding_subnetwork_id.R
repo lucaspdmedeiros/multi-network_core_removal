@@ -44,7 +44,7 @@ core_plants$disp_subnetwork = rep(1, 141)
 core_plants[plant_not_sub_disp, "disp_subnetwork"] = 0
 
 # saving the new tables
-write.csv(core_animals, "output/core_animals_sub.csv")
-write.csv(core_plants, "output/core_plants_sub.csv")
+write.csv(core_animals, "output/data/core_animals_sub.csv")
+write.csv(core_plants, "output/data/core_plants_sub.csv")
 
 #-----------------------------------------------------------------------------------------------------#
