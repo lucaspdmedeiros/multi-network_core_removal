@@ -1,11 +1,12 @@
 #-----------------------------------------------------------------------------------------------------#
 
 # Description:
-#   Removes the core species from the general core ... each of the subnetworks (pollination, ant, and seed-dispersal)
-#   and saves the rarefied adjacency matrix. Then, removes randomly the same number of core species
-#   from each of the subnetworks and saves 
+#   Removes species from the general core and the core of each subnetwork (pollination, ant and 
+#   seed-dispersal) and saves the rarefied interaction matrix. Then, removes the same number of core 
+#   species from the complete network and from each of the subnetworks 100 times for each and saves
+#   the rarefied interaction matrices.
 # Returns:
-#
+#   Generate and saves 404 rarefied interaction matrices. 
 
 source("R/RemoveSpSubnetwork.R")
 
