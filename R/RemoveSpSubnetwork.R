@@ -17,6 +17,7 @@ RemoveSpSubnetwork = function(s, n_plants, n_animals, mat, sub_id_plants, sub_id
   # Returns:
   #   s complete networks, each with n_row + n_col species removed from the desired subnetwork
 
+  rarefied_mats = list()
   for (i in 1:s) {
     indexes_plants = sample(which(sub_id_plants == 1), n_plants)
     indexes_animals = sample(which(sub_id_animals == 1), n_animals)
