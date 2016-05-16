@@ -1,8 +1,8 @@
 #-----------------------------------------------------------------------------------------------------#
 
 RemoveSpSubnetwork = function(s, n_plants, n_animals, mat, sub_id_plants, sub_id_animals) {
-  # Performs s simulations of random removal of n_row + n_col species from a subnetwork embedded in a 
-  # complete network.
+  # Performs s simulations of random removal of n_plants + n_animals species from a subnetwork 
+  # embedded in a complete network.
   # 
   # Args:
   #   s: number of simulations (number of different complete networks that will be generated)
