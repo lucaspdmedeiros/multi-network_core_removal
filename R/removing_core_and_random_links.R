@@ -62,20 +62,47 @@ for (i in 1:s)
 
 
 # plant-ant subnetwork core
-
+id_plants_ant_core = which(core_plants$ant_core == 1)
+id_animals_ant_core = which(core_animals$ant_core == 1)
+links_ant_core = sum(mat[id_plants_ant_core, id_animals_ant_core])
+mat_no_ant_core = mat
+mat_no_ant_core[id_plants_ant_core, id_animals_ant_core] = 0
+sum(mat_no_ant_core)
 # save matrix without plant-ant subnetwork core
-
+write.table(mat_no_ant_core, 
+            "output/data/core_links_removal/mats_ant_core/net_no_ant_core_links.txt",
+            row.names = FALSE, col.names = FALSE)
 # rarefaction simulation
-
+s = 100
+sub_id_plants = core_plants$ant_subnetwork # defining the subnetwork
+sub_id_animals = core_animals$ant_subnetwork # defining the subnetwork
+mat_list = RemoveLinksSubnetwork(s, l = links_ant_core, mat, sub_id_plants, sub_id_animals)
 # save ensemble of rarefied matrices
-
+for (i in 1:s) 
+  write.table(mat_list[[i]], paste("output/data/core_links_removal/mats_ant_core/",
+                                   "net_random_links_ant_core_", i, ".txt", sep = ""),
+              row.names = FALSE, col.names = FALSE)
 
 # plants-seed-disperser subnetwork core
-
+id_plants_disp_core = which(core_plants$dispersal_core == 1)
+id_animals_disp_core = which(core_animals$dispersal_core == 1)
+links_disp_core = sum(mat[id_plants_disp_core, id_animals_disp_core])
+mat_no_disp_core = mat
+mat_no_disp_core[id_plants_disp_core, id_animals_disp_core] = 0
+sum(mat_no_disp_core)
 # save matrix without plant-seed-disperser subnetwork core
-
+write.table(mat_no_disp_core, 
+            "output/data/core_links_removal/mats_disp_core/net_no_dispersal_core_links.txt",
+            row.names = FALSE, col.names = FALSE)
 # rarefaction simulation
-
+s = 100
+sub_id_plants = core_plants$disp_subnetwork # defining the subnetwork
+sub_id_animals = core_animals$disp_subnetwork # defining the subnetwork
+mat_list = RemoveLinksSubnetwork(s, l = links_disp_core, mat, sub_id_plants, sub_id_animals)
 # save ensemble of rarefied matrices
+for (i in 1:s) 
+  write.table(mat_list[[i]], paste("output/data/core_links_removal/mats_disp_core/",
+                                   "net_random_links_dispersal_core_", i, ".txt", sep = ""),
+              row.names = FALSE, col.names = FALSE)
 
 #-----------------------------------------------------------------------------------------------------#
