@@ -60,7 +60,6 @@ for (i in 1:s)
                                    "net_random_links_pollination_core_", i, ".txt", sep = ""),
               row.names = FALSE, col.names = FALSE)
 
-
 # plant-ant subnetwork core
 id_plants_ant_core = which(core_plants$ant_core == 1)
 id_animals_ant_core = which(core_animals$ant_core == 1)
