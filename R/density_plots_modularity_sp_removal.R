@@ -34,8 +34,8 @@ ggplot(mod_all, aes(x = x, fill = subnetwork)) +
   facet_wrap( ~ subnetwork, ncol = 2, scales = "free") +
   geom_density(alpha = 0.4, size = 1.25) + # density plot
   geom_vline(data = mod_ref, aes(xintercept = mod), size = 2, 
-             linetype = "dashed", colour = "red") + # plotting vertical lines
-  xlab("Modularity (Barber)") +
+             linetype = "dashed") + # plotting vertical lines
+  xlab("Modularity after species removal") +
   ylab("Density") +
   theme_bw() +
   theme(axis.text = element_text(size = 22), 
