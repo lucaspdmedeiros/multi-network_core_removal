@@ -1,99 +1,47 @@
 #-----------------------------------------------------------------------------------------------------#
 
 # Description:
-#   Plots the distribution of nestedness values of randomly rarefied networks and 2 reference values:
-#   (1) the nestedness value of the complete network and (2) the nestedness value of the network without
-#   the core species of a certain subnetwork.
+#   Plots the distribution of nestedness values of randomly rarefied networks and a reference value:
+#   the nestedness value of the network without the core species of a each subnetwork.
 # Returns:
-#   Saves 4 plots as jpeg files.
+#   Saves one plot as jpeg file.
 
 library(ggplot2)
 
 # general core removal
 NODF_gen_core = read.csv("output/data/core_species_removal/nestedness/NODF_general_core_removal.csv")
-# data frame with nestedness of complete network and nesteness without the general core
-NODF_ref_gen = data.frame(type = c("complete", "gen_core_removed"), NODF = NODF_gen_core[c(1, 2), 1])
-NODF_random_gen = data.frame(NODF = NODF_gen_core[-c(1, 2), 1]) # nestedness after random sp removal
-# calculating p value
-p_gen = sum(NODF_random_gen < NODF_ref_gen[2, 2])/nrow(NODF_random_gen)
-# plotting
-ggplot(NODF_random_gen, aes(x = NODF)) + 
-  geom_density(alpha = 0.5, size = 0.8, fill = "#B79F00") + # density plot
-  geom_vline(data = NODF_ref_gen, # plotting vertical lines
-             aes(xintercept = NODF,  colour = type), 
-             linetype = "dashed", size = 1) +
-  scale_colour_manual(values = c("black", "red")) +
-  scale_x_continuous(limits = c(0, 8)) +
-  xlab("Nestedness") +
-  ylab("Density") +
-  theme_bw() +
-  theme(axis.text = element_text(size = 15), 
-        axis.title = element_text(size = 20),
-        legend.position = "none")
-
 # plant-pollinator subnetwork core removal
 NODF_pol_core = read.csv("output/data/core_species_removal/nestedness/NODF_pollination_core_removal.csv")
-# data frame with nestedness of complete network and nesteness without the pollination core
-NODF_ref_pol = data.frame(type = c("complete", "pol_core_removed"), NODF = NODF_pol_core[c(1, 2), 1])
-NODF_random_pol = data.frame(NODF = NODF_pol_core[-c(1, 2), 1]) # nestedness after random sp removal
-# calculating p value
-p_pol = sum(NODF_random_pol < NODF_ref_pol[2, 2])/nrow(NODF_random_pol)
-# plotting
-ggplot(NODF_random_pol, aes(x = NODF)) + 
-  geom_density(alpha = 0.5, size = 0.8, fill = "#C77CFF") + # density plot
-  geom_vline(data = NODF_ref_pol, # plotting vertical lines
-             aes(xintercept = NODF,  colour = type), 
-             linetype = "dashed", size = 1) +
-  scale_colour_manual(values = c("black", "red")) +
-  scale_x_continuous(limits = c(2.5, 7.5)) +
-  xlab("Nestedness") +
-  ylab("Density") +
-  theme_bw() +
-  theme(axis.text = element_text(size = 15), 
-        axis.title = element_text(size = 20),
-        legend.position = "none")
-
 # plant-ant subnetwork core removal
 NODF_ant_core = read.csv("output/data/core_species_removal/nestedness/NODF_ant_core_removal.csv")
-# data frame with nestedness of complete network and nesteness without the ant core
-NODF_ref_ant = data.frame(type = c("complete", "ant_core_removed"), NODF = NODF_ant_core[c(1, 2), 1])
-NODF_random_ant = data.frame(NODF = NODF_ant_core[-c(1, 2), 1]) # nestedness after random sp removal
-# calculating p value
-p_ant = sum(NODF_random_ant < NODF_ref_ant[2, 2])/nrow(NODF_random_ant)
-# plotting
-ggplot(NODF_random_ant, aes(x = NODF)) + 
-  geom_density(alpha = 0.5, size = 0.8, fill = "#F8766D") + # density plot
-  geom_vline(data = NODF_ref_ant, # plotting vertical lines
-             aes(xintercept = NODF,  colour = type), 
-             linetype = "dashed", size = 1) +
-  scale_colour_manual(values = c("red", "black")) +
-  scale_x_continuous(limits = c(5, 7.25)) +
-  xlab("Nestedness") +
-  ylab("Density") +
-  theme_bw() +
-  theme(axis.text = element_text(size = 15), 
-        axis.title = element_text(size = 20),
-        legend.position = "none")
-
 # seed-dispersal subnetwork core removal
 NODF_disp_core = read.csv("output/data/core_species_removal/nestedness/NODF_disp_core_removal.csv")
-NODF_ref_disp = data.frame(type = c("complete", "disp_core_removed"), NODF = NODF_disp_core[c(1, 2), 1])
-NODF_random_disp = data.frame(NODF = NODF_disp_core[-c(1, 2), 1]) # nestedness after random sp removal
-# calculating p value
-p_disp = sum(NODF_random_disp < NODF_ref_disp[2, 2])/nrow(NODF_random_disp)
+
+# data frame with all NODF data
+NODF_all = data.frame(NODF = c(NODF_gen_core[3:nrow(NODF_gen_core), 1], NODF_pol_core[3:nrow(NODF_pol_core), 1],
+                               NODF_ant_core[3:nrow(NODF_ant_core), 1], NODF_disp_core[3:nrow(NODF_disp_core), 1]), 
+                      subnetwork = rep(c("General core", "Pollination core", "Ant core", "Dispersal core"), each = 100))
+# data frame with reference (core removal) NODF data
+NODF_ref = data.frame(NODF = c(NODF_gen_core[2, 1], NODF_pol_core[2, 1], NODF_ant_core[2, 1], NODF_disp_core[2, 1]), 
+                      subnetwork = c("General core", "Pollination core", "Ant core", "Dispersal core"))
+
 # plotting
-ggplot(NODF_random_disp, aes(x = NODF)) + 
-  geom_density(alpha = 0.5, size = 0.8, fill = "#7CAE00") + # density plot
-  geom_vline(data = NODF_ref_disp, # plotting vertical lines
-             aes(xintercept = NODF,  colour = type), 
-             linetype = "dashed", size = 1) +
-  scale_colour_manual(values = c("black", "red")) +
-  scale_x_continuous(limits = c(6, 7.25)) +
-  xlab("Nestedness") +
+palette = c("#F8766D", "#7CAE00", "#B79F00", "#C77CFF")
+jpeg("output/figs/NODF_core_and_random_sp_removal.jpeg", width = 1000, height = 1200, quality = 100)
+ggplot(NODF_all, aes(x = NODF, fill = subnetwork)) +
+  scale_fill_manual(values = palette) +
+  facet_wrap( ~ subnetwork, ncol = 2, scales = "free") +
+  geom_density(alpha = 0.4, size = 1.25) + # density plot
+  geom_vline(data = NODF_ref, aes(xintercept = NODF), size = 2, 
+             linetype = "dashed", colour = "red") + # plotting vertical lines
+  xlab("Nestedness (NODF)") +
   ylab("Density") +
   theme_bw() +
-  theme(axis.text = element_text(size = 15), 
-        axis.title = element_text(size = 20),
+  theme(axis.text = element_text(size = 22), 
+        axis.title = element_text(size = 35, face = "bold"),
+        axis.title.y=element_text(margin=margin(0,15,0,0)), 
+        strip.text.x = element_text(size = 27),
         legend.position = "none")
+dev.off()
 
 #-----------------------------------------------------------------------------------------------------#
