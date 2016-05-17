@@ -33,8 +33,8 @@ ggplot(NODF_all, aes(x = NODF, fill = subnetwork)) +
   facet_wrap( ~ subnetwork, ncol = 2, scales = "free") +
   geom_density(alpha = 0.4, size = 1.25) + # density plot
   geom_vline(data = NODF_ref, aes(xintercept = NODF), size = 2, 
-             linetype = "dashed", colour = "red") + # plotting vertical lines
-  xlab("Nestedness (NODF)") +
+             linetype = "dashed") + # plotting vertical lines
+  xlab("Nestedness after species removal") +
   ylab("Density") +
   theme_bw() +
   theme(axis.text = element_text(size = 22), 
