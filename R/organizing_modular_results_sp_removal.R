@@ -1,14 +1,15 @@
 #-----------------------------------------------------------------------------------------------------#
 
 # Description:
-#   Organizing results from MODULAR into csv files. Calculating p value for modularity.
+#   Organizing results from MODULAR for species removal simulations into csv files. 
+#   Calculating p value for modularity.
 # Returns:
 #   Returns 5 csv files. The first 4 files contain modularity values for different subnetwork species 
 #   removal simulations. The 5th file contains the modularity values for core sp removal and the p values.
 
 # general core
 output_gen = read.table("output/data/core_species_removal/modularity/OUT_MOD_gen_core.txt", 
-                          header = TRUE)
+                        header = TRUE)
 mod_ref_gen = output_gen$Modularity[1]
 output_gen_random = output_gen[-1, ] # removing the core removal modularity value
 mod_gen_random = output_gen_random$Modularity
