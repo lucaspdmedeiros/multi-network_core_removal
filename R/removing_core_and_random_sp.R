@@ -24,11 +24,13 @@ write.table(mat_no_gen_core,
             "output/data/core_species_removal/mats_gen_core/net_no_general_core.txt")
 # rarefaction simulation
 s = 100
-n_plants = length(id_plants_gen_core) # number of plant sp in the general core
-n_animals = length(id_animals_gen_core) # number of animal sp in the general core
-sub_id_plants = rep(1, nrow(mat)) # defining the subnetwork, namely the complete network
-sub_id_animals = rep(1, ncol(mat)) # defining the subnetwork, namely the complete network
-mat_list = RemoveSpSubnetwork(s = 100, n_plants, n_animals, mat, sub_id_plants, sub_id_animals)
+n_plants_gen = length(id_plants_gen_core) # number of plant sp in the general core
+n_animals_gen = length(id_animals_gen_core) # number of animal sp in the general core
+sub_id_plants_gen = rep(1, nrow(mat)) # defining the subnetwork, namely the complete network
+sub_id_animals_gen = rep(1, ncol(mat)) # defining the subnetwork, namely the complete network
+mat_list = RemoveSpSubnetwork(s = 100, n_plants = n_plants_gen, n_animals = n_animals_gen,
+                              mat = mat, sub_id_plants = sub_id_plants_gen,
+                              sub_id_animals = sub_id_animals_gen)
 # save ensemble of rarefied matrices
 for (i in 1:s)
   write.table(mat_list[[i]], paste("output/data/core_species_removal/mats_gen_core/",
@@ -42,11 +44,13 @@ mat_no_pol_core = mat[-id_plants_pol_core, -id_animals_pol_core] # removing poll
 write.table(mat_no_pol_core, "output/data/core_species_removal/mats_pol_core/net_no_pollination_core.txt")
 # rarefaction simulation
 s = 100
-n_plants = length(id_plants_pol_core) # number of plant sp in the pollination core
-n_animals = length(id_animals_pol_core) # number of animal sp in the pollination core
-sub_id_plants = core_plants$pol_subnetwork # defining the subnetwork
-sub_id_animals = core_animals$pol_subnetwork # defining the subnetwork
-mat_list = RemoveSpSubnetwork(s, n_plants, n_animals, mat, sub_id_plants, sub_id_animals)
+n_plants_pol = length(id_plants_pol_core) # number of plant sp in the pollination core
+n_animals_pol = length(id_animals_pol_core) # number of animal sp in the pollination core
+sub_id_plants_pol = core_plants$pol_subnetwork # defining the subnetwork
+sub_id_animals_pol = core_animals$pol_subnetwork # defining the subnetwork
+mat_list = RemoveSpSubnetwork(s, n_plants = n_plants_pol, n_animals = n_animals_pol,
+                              mat, sub_id_plants = sub_id_plants_pol, 
+                              sub_id_animals = sub_id_animals_pol)
 # save ensemble of rarefied matrices
 for (i in 1:s)
   write.table(mat_list[[i]], paste("output/data/core_species_removal/mats_pol_core/",
@@ -60,11 +64,13 @@ mat_no_ant_core = mat[-id_plants_ant_core, -id_animals_ant_core] # removing ant 
 write.table(mat_no_ant_core, "output/data/core_species_removal/mats_ant_core/net_no_ant_core.txt")
 # rarefaction simulation
 s = 100
-n_plants = length(id_plants_ant_core) # number of plant sp in the ant core
-n_animals = length(id_animals_ant_core) # number of animal sp in the ant core
-sub_id_plants = core_plants$ant_subnetwork # defining the subnetwork
-sub_id_animals = core_animals$ant_subnetwork # defining the subnetwork
-mat_list = RemoveSpSubnetwork(s, n_plants, n_animals, mat, sub_id_plants, sub_id_animals)
+n_plants_ant = length(id_plants_ant_core) # number of plant sp in the ant core
+n_animals_ant = length(id_animals_ant_core) # number of animal sp in the ant core
+sub_id_plants_ant = core_plants$ant_subnetwork # defining the subnetwork
+sub_id_animals_ant = core_animals$ant_subnetwork # defining the subnetwork
+mat_list = RemoveSpSubnetwork(s, n_plants = n_plants_ant, n_animals = n_animals_ant,
+                              mat, sub_id_plants = sub_id_plants_ant,
+                              sub_id_animals = sub_id_animals_ant)
 # save ensemble of rarefied matrices
 for (i in 1:s)
   write.table(mat_list[[i]], paste("output/data/core_species_removal/mats_ant_core/",
@@ -78,11 +84,13 @@ mat_no_disp_core = mat[-id_plants_disp_core, -id_animals_disp_core] # removing d
 write.table(mat_no_disp_core, "output/data/core_species_removal/mats_disp_core/net_no_disp_core.txt")
 # rarefaction simulation
 s = 100
-n_plants = length(id_plants_disp_core) # number of plant sp in the seed-dispersal core
-n_animals = length(id_animals_disp_core) # number of animal sp in the seed-dispersal core
-sub_id_plants = core_plants$disp_subnetwork # defining the subnetwork
-sub_id_animals = core_animals$disp_subnetwork # defining the subnetwork
-mat_list = RemoveSpSubnetwork(s, n_plants, n_animals, mat, sub_id_plants, sub_id_animals)
+n_plants_disp = length(id_plants_disp_core) # number of plant sp in the seed-dispersal core
+n_animals_disp = length(id_animals_disp_core) # number of animal sp in the seed-dispersal core
+sub_id_plants_disp = core_plants$disp_subnetwork # defining the subnetwork
+sub_id_animals_disp = core_animals$disp_subnetwork # defining the subnetwork
+mat_list = RemoveSpSubnetwork(s, n_plants = n_plants_disp, n_animals = n_animals_disp,
+                              mat, sub_id_plants = sub_id_plants_disp,
+                              sub_id_animals = sub_id_animals_disp)
 # save ensemble of rarefied matrices
 for (i in 1:s)
   write.table(mat_list[[i]], paste("output/data/core_species_removal/mats_disp_core/",
