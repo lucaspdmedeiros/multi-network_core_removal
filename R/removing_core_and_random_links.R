@@ -29,9 +29,9 @@ write.table(mat_no_gen_core,
             row.names = FALSE, col.names = FALSE)
 # rarefaction simulation
 s = 100
-sub_id_plants = rep(1, nrow(mat)) # defining the subnetwork, namely the complete network
-sub_id_animals = rep(1, ncol(mat)) # defining the subnetwork, namely the complete network
-mat_list = RemoveLinksSubnetwork(s, l = links_gen_core, mat, sub_id_plants, sub_id_animals)
+sub_id_plants_gen = rep(1, nrow(mat)) # defining the subnetwork, namely the complete network
+sub_id_animals_gen = rep(1, ncol(mat)) # defining the subnetwork, namely the complete network
+mat_list = RemoveLinksSubnetwork(s, l = links_gen_core, mat, sub_id_plants_gen, sub_id_animals_gen)
 # save ensemble of rarefied matrices
 for (i in 1:s)
   write.table(mat_list[[i]], paste("output/data/core_links_removal/mats_gen_core/",
@@ -51,9 +51,9 @@ write.table(mat_no_pol_core,
             row.names = FALSE, col.names = FALSE)
 # rarefaction simulation
 s = 100
-sub_id_plants = core_plants$pol_subnetwork # defining the subnetwork
-sub_id_animals = core_animals$pol_subnetwork # defining the subnetwork
-mat_list = RemoveLinksSubnetwork(s, l = links_pol_core, mat, sub_id_plants, sub_id_animals)
+sub_id_plants_pol = core_plants$pol_subnetwork # defining the subnetwork
+sub_id_animals_pol = core_animals$pol_subnetwork # defining the subnetwork
+mat_list = RemoveLinksSubnetwork(s, l = links_pol_core, mat, sub_id_plants_pol, sub_id_animals_pol)
 # save ensemble of rarefied matrices
 for (i in 1:s) 
   write.table(mat_list[[i]], paste("output/data/core_links_removal/mats_pol_core/",
@@ -73,9 +73,9 @@ write.table(mat_no_ant_core,
             row.names = FALSE, col.names = FALSE)
 # rarefaction simulation
 s = 100
-sub_id_plants = core_plants$ant_subnetwork # defining the subnetwork
-sub_id_animals = core_animals$ant_subnetwork # defining the subnetwork
-mat_list = RemoveLinksSubnetwork(s, l = links_ant_core, mat, sub_id_plants, sub_id_animals)
+sub_id_plants_ant = core_plants$ant_subnetwork # defining the subnetwork
+sub_id_animals_ant = core_animals$ant_subnetwork # defining the subnetwork
+mat_list = RemoveLinksSubnetwork(s, l = links_ant_core, mat, sub_id_plants_ant, sub_id_animals_ant)
 # save ensemble of rarefied matrices
 for (i in 1:s) 
   write.table(mat_list[[i]], paste("output/data/core_links_removal/mats_ant_core/",
@@ -95,9 +95,9 @@ write.table(mat_no_disp_core,
             row.names = FALSE, col.names = FALSE)
 # rarefaction simulation
 s = 100
-sub_id_plants = core_plants$disp_subnetwork # defining the subnetwork
-sub_id_animals = core_animals$disp_subnetwork # defining the subnetwork
-mat_list = RemoveLinksSubnetwork(s, l = links_disp_core, mat, sub_id_plants, sub_id_animals)
+sub_id_plants_disp = core_plants$disp_subnetwork # defining the subnetwork
+sub_id_animals_disp = core_animals$disp_subnetwork # defining the subnetwork
+mat_list = RemoveLinksSubnetwork(s, l = links_disp_core, mat, sub_id_plants_disp, sub_id_animals_disp)
 # save ensemble of rarefied matrices
 for (i in 1:s) 
   write.table(mat_list[[i]], paste("output/data/core_links_removal/mats_disp_core/",
