@@ -9,19 +9,19 @@
 library(ggplot2)
 
 # general core removal
-mod_gen_core = read.csv("output/data/core_species_removal/modularity/modularity_gen_sp_random.csv")
+mod_gen_core = read.csv("output/data/core_species_removal/modularity/modularity_gen_core_sp_random.csv")
 # plant-pollinator subnetwork core removal
-mod_pol_core = read.csv("output/data/core_species_removal/modularity/modularity_pol_sp_random.csv")
+mod_pol_core = read.csv("output/data/core_species_removal/modularity/modularity_pol_core_sp_random.csv")
 # plant-ant subnetwork core removal
-mod_ant_core = read.csv("output/data/core_species_removal/modularity/modularity_ant_sp_random.csv")
+mod_ant_core = read.csv("output/data/core_species_removal/modularity/modularity_ant_core_sp_random.csv")
 # seed-dispersal subnetwork core removal
-mod_disp_core = read.csv("output/data/core_species_removal/modularity/modularity_disp_sp_random.csv")
+mod_disp_core = read.csv("output/data/core_species_removal/modularity/modularity_disp_core_sp_random.csv")
 
 # data frame with all modularity data
 mod_all = data.frame(mod = rbind(mod_gen_core, mod_pol_core, mod_ant_core, mod_disp_core), 
                      subnetwork = rep(c("General core", "Pollination core", "Ant core", "Dispersal core"), each = 100))
 # data frame with reference (core removal) mod data
-mod_p_values = read.csv("output/data/core_species_removal/modularity/modularity_core_removal_p_values.csv")
+mod_p_values = read.csv("output/data/core_species_removal/modularity/modularity_core_sp_removal_p_values.csv")
 
 mod_ref = data.frame(mod = mod_p_values$modularity, 
                      subnetwork = c("General core", "Pollination core", "Ant core", "Dispersal core"))
