@@ -1,7 +1,7 @@
 #-----------------------------------------------------------------------------------------------------#
 
 # Description: 
-#   Adds columns to the data frames core_animals and core_plants that containg a subnetwork identifiers.
+#   Adds columns to the data frames core_animals and core_plants that containg subnetwork identifiers.
 #
 # Returns:
 #   Saves 2 csv tables, core_animals_sub and core_plants_sub.
