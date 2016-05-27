@@ -1,8 +1,8 @@
 #-----------------------------------------------------------------------------------------------------#
 
 # Description:
-#   Plots the distribution of modularity values of randomly rarefied networks and a reference value:
-#   the modularity value of the network without the core species of a each subnetwork.
+#   Plots the distribution of modularity values of randomly species-rarefied networks and a reference
+#   value: the modularity value of the network without the core species of each subnetwork.
 # Returns:
 #   Saves one plot as jpeg file.
 
