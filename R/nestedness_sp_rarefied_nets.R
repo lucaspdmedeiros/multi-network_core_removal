@@ -1,7 +1,7 @@
 #-----------------------------------------------------------------------------------------------------#
 
 # Description:
-#   Calculates nestedness of rarefied interaction matrices regarding general core, plant-pollinator 
+#   Calculates nestedness of species-rarefied interaction matrices regarding general core, plant-pollinator 
 #   subnetwork core, plant-ant subnetwork core, and plants-seed-disperser subnetwork core.
 # Returns:
 #   Saves tables containing the nestedness values for each of the 4 scenarios described above.
