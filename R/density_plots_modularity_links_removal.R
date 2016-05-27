@@ -2,7 +2,7 @@
 
 # Description:
 #   Plots the distribution of modularity values of randomly link-rarefied networks and a reference value:
-#   the modularity value of the network without the core links of a each subnetwork.
+#   the modularity value of the network without the core links of each subnetwork.
 # Returns:
 #   Saves one plot as jpeg file.
 
