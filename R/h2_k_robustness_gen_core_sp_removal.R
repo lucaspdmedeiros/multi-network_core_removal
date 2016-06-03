@@ -74,8 +74,8 @@ metrics_no_gen_core_sp = data.frame(core_sp_removed = c(metrics_gen_core_sp[1, "
                                     z_score = z_scores_gen_core_sp, p_value = p_values_gen_core_sp)
 row.names(metrics_no_gen_core_sp) = colnames(metrics_gen_core_sp)
 
-write.csv(metrics_gen_core_sp_random, file = "output/data/core_species_removal/h2_k_robustness/h2_k_robustness_random_sp_removal.csv")
-write.csv(metrics_no_gen_core_sp, file = "output/data/core_species_removal/h2_k_robustness/h2_k_robustness_core_sp_removal.csv")
+write.csv(metrics_gen_core_sp_random, file = "output/data/core_species_removal/h2_k_robustness/gen_random_sp_removal.csv")
+write.csv(metrics_no_gen_core_sp, file = "output/data/core_species_removal/h2_k_robustness/gen_core_sp_removal.csv")
 
 # general core links removed
 
@@ -139,5 +139,5 @@ metrics_no_gen_core_links = data.frame(core_links_removed = c(metrics_gen_core_l
                                        z_score = z_scores_gen_core_links, p_value = p_values_gen_core_links)
 row.names(metrics_no_gen_core_links) = colnames(metrics_gen_core_links)
 
-write.csv(metrics_gen_core_links_random, file = "output/data/core_links_removal/h2_k_robustness/h2_k_robustness_random_links_removal.csv")
-write.csv(metrics_no_gen_core_links, file = "output/data/core_links_removal/h2_k_robustness/h2_k_robustness_core_links_removal.csv")
+write.csv(metrics_gen_core_links_random, file = "output/data/core_links_removal/h2_k_robustness/gen_random_links_removal.csv")
+write.csv(metrics_no_gen_core_links, file = "output/data/core_links_removal/h2_k_robustness/gen_core_links_removal.csv")
