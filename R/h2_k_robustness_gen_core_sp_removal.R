@@ -141,3 +141,5 @@ row.names(metrics_no_gen_core_links) = colnames(metrics_gen_core_links)
 
 write.csv(metrics_gen_core_links_random, file = "output/data/core_links_removal/h2_k_robustness/gen_random_links_removal.csv")
 write.csv(metrics_no_gen_core_links, file = "output/data/core_links_removal/h2_k_robustness/gen_core_links_removal.csv")
+
+#-----------------------------------------------------------------------------------------------------#
