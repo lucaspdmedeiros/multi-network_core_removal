@@ -9,6 +9,7 @@
 #   the values of the metric with core species or links removed and their respective z-scores and p-values
 
 library(bipartite)
+source("R/RemoveNodesNoLinks.R")
 
 # dispersal core species removed
 
@@ -27,6 +28,7 @@ r_a_ml = rep(NA, 101)
 for (i in 1:n_files) {
   mat = as.matrix(read.table(paste("output/data/core_species_removal/mats_disp_core/", files[i],
                                    sep = "")))
+  mat = RemoveNodesNoLinks(mat)
   h2[i] = H2fun(mat, H2_integer=FALSE)[1] # specialization
   k[i] = networklevel(mat, index="links per species") # mean degree
   # robustness
