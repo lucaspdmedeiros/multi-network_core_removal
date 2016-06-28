@@ -10,6 +10,7 @@
 #   table containing observed nestedness values and p values.
 
 library(bipartite)
+source("R/RemoveNodesNoLinks.R")
 
 # complete matrix
 mat = as.matrix(read.table("data/complete_network.txt"))
@@ -17,11 +18,13 @@ NODF_complete = nested(mat, method = "NODF2")
 
 # general core
 mat_no_gen_core = as.matrix(read.table("output/data/core_species_removal/mats_gen_core/net_no_general_core.txt"))
+mat_no_gen_core = RemoveNodesNoLinks(mat_no_gen_core) # removing empty rows and columns. this changes nodf value
 NODF_no_gen_core = nested(mat_no_gen_core, method = "NODF2") 
 NODF_gen_core_random = rep(NA, 100)
 for (i in 1:100) {
   mat_gen_core_random = as.matrix(read.table(paste("output/data/core_species_removal/mats_gen_core/",
                                                    "net_random_general_core_", i, ".txt", sep = "")))
+  mat_gen_core_random = RemoveNodesNoLinks(mat_gen_core_random)
   NODF_gen_core_random[i] = nested(mat_gen_core_random, method = "NODF2") 
 }
 # saving
@@ -33,11 +36,13 @@ p_gen = sum(NODF_gen_core[3:length(NODF_gen_core)] < NODF_gen_core[2])/length(NO
 
 # plant-pollinator subnetwork core
 mat_no_pol_core = as.matrix(read.table("output/data/core_species_removal/mats_pol_core/net_no_pollination_core.txt"))
+mat_no_pol_core = RemoveNodesNoLinks(mat_no_pol_core)
 NODF_no_pol_core = nested(mat_no_pol_core, method = "NODF2")
 NODF_pol_core_random = rep(NA, 100)
 for (i in 1:100) {
   mat_pol_core_random = as.matrix(read.table(paste("output/data/core_species_removal/mats_pol_core/",
                                                    "net_random_pollination_core_", i, ".txt", sep = "")))
+  mat_pol_core_random = RemoveNodesNoLinks(mat_pol_core_random)
   NODF_pol_core_random[i] = nested(mat_pol_core_random, method = "NODF2")
 }
 # saving  
@@ -49,11 +54,13 @@ p_pol = sum(NODF_pol_core[3:length(NODF_pol_core)] < NODF_pol_core[2])/length(NO
 
 # plant-ant subnetwork core
 mat_no_ant_core = as.matrix(read.table("output/data/core_species_removal/mats_ant_core/net_no_ant_core.txt"))
+mat_no_ant_core = RemoveNodesNoLinks(mat_no_ant_core)
 NODF_no_ant_core = nested(mat_no_ant_core, method = "NODF2")
 NODF_ant_core_random = rep(NA, 100)
 for (i in 1:100) {
   mat_ant_core_random = as.matrix(read.table(paste("output/data/core_species_removal/mats_ant_core/",
                                                    "net_random_ant_core_", i, ".txt", sep = "")))
+  mat_ant_core_random = RemoveNodesNoLinks(mat_ant_core_random)
   NODF_ant_core_random[i] = nested(mat_ant_core_random, method = "NODF2")
 }
 # saving
@@ -65,11 +72,13 @@ p_ant = sum(NODF_ant_core[3:length(NODF_ant_core)] < NODF_ant_core[2])/length(NO
   
 # plants-seed-disperser subnetwork core
 mat_no_disp_core = as.matrix(read.table("output/data/core_species_removal/mats_disp_core/net_no_disp_core.txt"))
+mat_no_disp_core = RemoveNodesNoLinks(mat_no_disp_core)
 NODF_no_disp_core = nested(mat_no_disp_core, method = "NODF2")
 NODF_disp_core_random = rep(NA, 100)
 for (i in 1:100) {
   mat_disp_core_random = as.matrix(read.table(paste("output/data/core_species_removal/mats_disp_core/",
                                                     "net_random_disp_core_", i, ".txt", sep = "")))
+  mat_disp_core_random = RemoveNodesNoLinks(mat_disp_core_random)
   NODF_disp_core_random[i] = nested(mat_disp_core_random, method = "NODF2")
 }
 # saving
