@@ -1,9 +1,11 @@
 #-----------------------------------------------------------------------------------------------------#
 
 # Description:
-#   
+#   Plots the distribution of robustness, mean degree and specialization values of randomly 
+#   species-rarefied networks and a reference value: the value of the network without the 
+#   core species of each subnetwork.
 # Returns:
-#   
+#   Saves plots as jpeg files.
 
 library(ggplot2)
 
